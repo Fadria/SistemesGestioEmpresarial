@@ -3,12 +3,24 @@ def esSudokuCorrecto(miArrayBi):
     for i in range(9): # 9 porque son los valores por fila y columna del sudoku
         valor = miArrayBi[i][i] # Guardamos cada valor en diagonal
         
+        # Comprobamos que disponemos de números válidos
+        if(int(valor) > 9 or int(valor) < 0):
+            return False
+
         # Comparamos el valor de izquierda a derecha y de arriba a abajo
         for j in range(9):
             if(j != i): # Comprobamos que no comparemos el número consigo mismo
 
                 # Repetimos números en la misma columna o fila, el sudoku es incorrecto
                 if valor == miArrayBi[j][i] or valor == miArrayBi[i][j]:
+                    return False
+                
+                # Comprobamos que disponemos de valores válidos
+                if(int(miArrayBi[j][i]) < 0 or int(miArrayBi[j][i]) > 9): 
+                    return False # Devolvemos false
+
+                # Comprobamos que disponemos de valores válidos
+                if(int(miArrayBi[i][j]) < 0 or int(miArrayBi[i][j]) > 9): 
                     return False # Devolvemos false
     # Si recorremos todo el Sudoku y no hemos detectado repeticiones indicamos que es válido
     return True
