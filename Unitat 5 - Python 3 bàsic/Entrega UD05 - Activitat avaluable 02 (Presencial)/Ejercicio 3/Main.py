@@ -19,6 +19,12 @@ def numeroPatrones(texto):
 
 
 print("Por favor, introduzca la cadena a comprobar: ") # Pedimos la cadena al usuario
+
+'''
+    El programa no va a distinguir entre minúsculas y mayúsculas, por lo que convertiremos los valores introducidos por el 
+    usuario en texto en mayúsculas, ya que nuestros patrones están en mayúsculas. Si esto cambiase en el futuro, también deberíamos
+    aplicar la función upper a cada valor de nuestra lista de patrones.
+'''
 cadena = input().upper()
 
 # Imprimimos el resultado de la función numeroPatrones
