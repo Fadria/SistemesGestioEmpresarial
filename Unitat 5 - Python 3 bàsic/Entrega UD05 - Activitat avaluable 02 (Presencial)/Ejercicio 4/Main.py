@@ -28,7 +28,7 @@ def contandoMinas(miCampo):
                     Hay una mina en la parte inferior izquierda.
                     Comprobamos que i+1 es menor a la longitud del campo para poder comprobar si es la última fila
                 '''
-                if i+1 < len(miCampo) and miCampo[i+1][j-1] == -1:
+                if i+1 < len(miCampo) and j > 0 and miCampo[i+1][j-1] == -1:
                     miCampo[i][j] += 1
 
                 # Hay una mina en la parte inferior
@@ -43,12 +43,12 @@ def contandoMinas(miCampo):
                     miCampo[i][j] += 1
 
                 # Hay una mina en la parte derecha
-                if j+1 < len(miCampo) and miCampo[i][j+1] == -1:
+                if j+1 < len(miCampo[i]) and miCampo[i][j+1] == -1:
                     miCampo[i][j] += 1
 
                 # Hay una mina en la parte inferior derecha
-                if i+1 < len(miCampo) and j+1 < len(miCampo) and miCampo[i+1][j+1] == -1:
-                    miCampo[i][j] += 1                
+                if i+1 < len(miCampo) and j+1 < len(miCampo[i]) and miCampo[i+1][j+1] == -1:
+                    miCampo[i][j] += 1
     return miCampo
 
 # Array que contiene nuestro buscaminas, los valores -1 nos indican que en esa posición, tendríamos una mina
