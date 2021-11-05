@@ -1,0 +1,41 @@
+# Heredamos de object para obtener una clase.
+class Profesor(object):
+
+    # Constructor de profesor
+    def __init__(self, nombre, tipo):
+
+        # Si el sector del profesor no es uno de nuestra lista, lanzaremos una excepción
+        if tipo.lower() not in ["ciencias", "letras", "otros"]:
+            raise Exception("Error, el tipo de profesor no es correcto")
+
+        # Asignamos los argumentos recibidos a los atributos de la clase
+        self.nombre = nombre
+        self.tipo = tipo
+
+    # Actualizamos el nombre del profesor
+    def setNombre(self, nombre):
+        self.nombre = nombre
+
+    # Actualizamos el tipo del profesor
+    def setTipo(self, tipo):
+        self.tipo = tipo
+
+    # Devolvemos el nombre del profesor
+    def getNombre(self):
+        return self.nombre
+
+    # Devolvemos el tipo del profesor
+    def getTipo(self):
+        return self.tipo
+
+    # Eliminamos el nombre del profesor
+    def deleteNombre(self):
+        del self.nombre
+
+    # Eliminamos el tipo del profesor
+    def deleteTipo(self):
+        del self.tipo
+        
+    # Devolvemos todos los datos del profesor
+    def getDatos(self):
+        return "[Nombre: %s, Tipo: %s]" % (self.getNombre(), self.getTipo())
