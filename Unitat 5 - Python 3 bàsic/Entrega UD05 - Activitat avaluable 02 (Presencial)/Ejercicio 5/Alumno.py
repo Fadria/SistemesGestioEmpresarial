@@ -9,6 +9,7 @@ class Alumno(object):
         self.nombre = nombre
         self.curso = curso
         self.profesor = profesor
+        self.escolarizado = False # Variable usada para verificar si tiene una escuela asignada
 
     # Actualizamos el nombre del alumno
     def setNombre(self, nombre):
@@ -22,6 +23,10 @@ class Alumno(object):
     def setProfesor(self, profesor):
         self.profesor = profesor
 
+    # Indicamos un booleano según el estudiante estudie o no en una escuela
+    def setEscolarizado(self, escolarizado):
+        self.escolarizado = escolarizado
+
     # Devolvemos el nombre del alumno
     def getNombre(self):
         return self.nombre
@@ -33,6 +38,10 @@ class Alumno(object):
     # Devolvemos el profesor del alumno
     def getProfesor(self):
         return self.profesor
+
+    # Devolvemos un booleano que indica si trabaja en una escuela
+    def getEscolarizado(self):
+        return self.escolarizado
 
     # Eliminamos el nombre del alumno
     def deleteNombre(self):

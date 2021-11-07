@@ -67,11 +67,16 @@ class Escuela(object):
 
     # Añadimos un profesor
     def addProfesor(self, profesor):
-        self.profesores.append(profesor)
+        if profesor.getEmpleado() == False:
+            self.profesores.append(profesor)
+            profesor.setEmpleado(True)
+        else:
+            print("El profesor indicado ya tiene una escuela asignada")
 
     # Eliminamos un profesor
     def removeProfesor(self, profesor):
         self.profesores.remove(profesor)
+        profesor.setEmpleado(False)
 
     def getDatosAlumnos(self):
         cadenaAlumnos = ""

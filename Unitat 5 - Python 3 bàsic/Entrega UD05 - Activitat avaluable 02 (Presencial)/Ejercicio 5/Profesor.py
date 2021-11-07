@@ -11,6 +11,7 @@ class Profesor(object):
         # Asignamos los argumentos recibidos a los atributos de la clase
         self.nombre = nombre
         self.tipo = tipo
+        self.empleado = False # Variable usada para verificar si tiene una escuela asignada
 
     # Actualizamos el nombre del profesor
     def setNombre(self, nombre):
@@ -20,6 +21,10 @@ class Profesor(object):
     def setTipo(self, tipo):
         self.tipo = tipo
 
+    # Indicamos un booleano según el profesor trabaje o no en una escuela
+    def setEmpleado(self, empleado):
+        self.empleado = empleado
+
     # Devolvemos el nombre del profesor
     def getNombre(self):
         return self.nombre
@@ -28,6 +33,10 @@ class Profesor(object):
     def getTipo(self):
         return self.tipo
 
+    # Devolvemos un booleano que indica si trabaja en una escuela
+    def getEmpleado(self):
+        return self.empleado
+
     # Eliminamos el nombre del profesor
     def deleteNombre(self):
         del self.nombre
@@ -35,7 +44,7 @@ class Profesor(object):
     # Eliminamos el tipo del profesor
     def deleteTipo(self):
         del self.tipo
-        
+
     # Devolvemos todos los datos del profesor
     def getDatos(self):
         return "[Nombre: %s, Tipo: %s]" % (self.getNombre(), self.getTipo())
