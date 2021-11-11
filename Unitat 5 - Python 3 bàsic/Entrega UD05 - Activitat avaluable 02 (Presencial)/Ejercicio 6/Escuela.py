@@ -10,9 +10,6 @@ class Escuela(db.Base):
     id = Column(Integer, primary_key=True) # ID del objeto
     nombre = Column(String, nullable=False)
     localidad = Column(String)
-    responsable = Column(Integer, ForeignKey('profesores.id'))
-    alumnos = relationship('Alumno', backref='Escuela')
-    profesores = relationship('Profesor', backref='Escuela')
 
     # Constructor de alumno, alumnos y profesores no serán obligatorios cuando creemos el objeto
     def __init__(self, nombre, localidad, responsable, alumnos=None, profesores=None):

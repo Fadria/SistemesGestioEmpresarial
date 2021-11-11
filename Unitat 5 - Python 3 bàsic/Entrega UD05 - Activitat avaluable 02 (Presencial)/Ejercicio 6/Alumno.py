@@ -1,6 +1,10 @@
 import db
 
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy.orm import relationship, backref
+from sqlalchemy.ext.declarative import declarative_base
+
+from Profesor import Profesor
 
 # Heredamos de object para obtener una clase.
 class Alumno(db.Base):
@@ -8,16 +12,17 @@ class Alumno(db.Base):
 
     id = Column(Integer, primary_key=True) # ID del objeto
     nombre = Column(String, nullable=False)
-    escolarizado = Column(Boolean)
-    profesor_id = Column(Integer, ForeignKey('profesores.id'))
-    escuela_id = Column(Integer, ForeignKey('escuela.id'))
-
+    curso = Column(String)
+    escolarizado = Column(Boolean, default=False)
+    profesor_id = Column( Integer, ForeignKey('profesores.id') )
+    profesor = relationship( 'Profesor', back_populates='alumnos' )
+        
     # Constructor de alumno
     def __init__(self, nombre, curso, profesor):
         # Asignamos los argumentos recibidos a los atributos de la clase
         self.nombre = nombre
         self.curso = curso
-        self.profesor = profesor
+        self.profesor_id = profesor
         self.escolarizado = False # Variable usada para verificar si tiene una escuela asignada
 
     # Actualizamos el nombre del alumno

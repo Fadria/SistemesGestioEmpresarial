@@ -1,7 +1,8 @@
+from sqlalchemy.orm import relationship
 import db
 
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 
 # Heredamos de object para obtener una clase.
 class Profesor(db.Base):
@@ -10,9 +11,7 @@ class Profesor(db.Base):
     id = Column(Integer, primary_key=True) # ID del objeto
     nombre = Column(String, nullable=False)
     tipo = Column(String)
-    alumnos = relationship('Alumno', backref='Profesor')
-    escuela = relationship('Escuela', backref='Profesor')
-    escuela_id = Column(Integer, ForeignKey('escuela.id'))
+    alumnos = relationship('Alumno',  back_populates='profesor')
 
     # Constructor de profesor
     def __init__(self, nombre, tipo):
