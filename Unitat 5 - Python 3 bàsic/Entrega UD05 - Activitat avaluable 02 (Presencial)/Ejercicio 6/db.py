@@ -1,17 +1,9 @@
-import db
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///escuelas.sqlite') # Creamos el punto de entrada a la base de datos
-Session = sessionmaker(bind=engine) # Iniciamos la transacción con la base de datos
+engine = create_engine('sqlite:///escuelas.sqlite')
+Session = sessionmaker(bind=engine)
 session = Session()
 
-Base = declarative_base() # Realiza el mapeo a partir de los modelos
-
-def run():
-    pass
-
-if __name__ == '__main__':
-    db.Base.metadata.create_all(db.engine)
-    run()
+Base = declarative_base()

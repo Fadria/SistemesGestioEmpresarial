@@ -1,29 +1,33 @@
-import db
-
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.ext.declarative import declarative_base
-
+from sqlalchemy.sql.expression import null
 from Profesor import Profesor
+
+import db
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 # Heredamos de object para obtener una clase.
 class Alumno(db.Base):
     __tablename__ = 'alumnos'
-
-    id = Column(Integer, primary_key=True) # ID del objeto
-    nombre = Column(String, nullable=False)
+    
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String)
     curso = Column(String)
-    escolarizado = Column(Boolean, default=False)
-    profesor_id = Column( Integer, ForeignKey('profesores.id') )
-    profesor = relationship( 'Profesor', back_populates='alumnos' )
-        
+    profesor = Column(Integer, ForeignKey('profesores.id'))
+    escuela = Column(Integer, ForeignKey('escuelas.id'))
+
     # Constructor de alumno
-    def __init__(self, nombre, curso, profesor):
+    def __init__(self, nombre, curso, profesor = None, escuela = None):
         # Asignamos los argumentos recibidos a los atributos de la clase
         self.nombre = nombre
         self.curso = curso
-        self.profesor_id = profesor
-        self.escolarizado = False # Variable usada para verificar si tiene una escuela asignada
+        self.profesor = profesor
+        self.escuela = escuela
+
+    def __repr__(self):
+        return f'Alumno({self.nombre}, {self.profesor}, {self.escuela})'
+        
+    def __str__(self):
+        return self.nombre
 
     # Actualizamos el nombre del alumno
     def setNombre(self, nombre):

@@ -1,24 +1,30 @@
-import db
+from Profesor import Profesor
+from Alumno import Alumno
 
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.sql.expression import null
+
+import db
+from sqlalchemy import Column, Integer, String, Float, Boolean
 from sqlalchemy.orm import relationship
 
 # Heredamos de object para obtener una clase.
 class Escuela(db.Base):
-    __tablename__ = 'escuela'
+
+    __tablename__ = 'escuelas'
     
-    id = Column(Integer, primary_key=True) # ID del objeto
-    nombre = Column(String, nullable=False)
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String)
     localidad = Column(String)
+    responsable = Column(Integer)
+    alumnos = relationship('Alumno', backref='escuelaAlumno')
+    profesores = relationship('Profesor', backref='escuelaProfesor')
 
     # Constructor de alumno, alumnos y profesores no serán obligatorios cuando creemos el objeto
-    def __init__(self, nombre, localidad, responsable, alumnos=None, profesores=None):
+    def __init__(self, nombre, localidad, responsable):
         # Asignamos los argumentos recibidos a los atributos de la clase
         self.nombre = nombre
         self.localidad = localidad
         self.responsable = responsable
-        self.alumnos = []
-        self.profesores = []
 
     # Actualizamos el nombre de la escuela
     def setNombre(self, nombre):
