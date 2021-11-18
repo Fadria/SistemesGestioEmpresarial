@@ -11,7 +11,7 @@ df2 = pd.read_csv(nombreFichero, header=None) # Leemos el fichero
 listadoNombres = df2[0] # La primera columna contiene los nombres
 listadoCodigos = df2[1] # La segunda columna contiene los números
 
-#Cremos un for que con zip recorre dos listas a la vez
+# Bucle for que se encarga de recorrer la lista de nombres, asumimos que tendremos el mismo número de nombres y códigos en el CSV
 for i in range(len(listadoNombres)):
     EAN = barcode.get_barcode_class('ean13') # Obtenemos la clase correspondiente al EAN13
     ean = EAN(str(listadoCodigos[i]), writer=ImageWriter()) # Variable para el código EAN de cada alumno
