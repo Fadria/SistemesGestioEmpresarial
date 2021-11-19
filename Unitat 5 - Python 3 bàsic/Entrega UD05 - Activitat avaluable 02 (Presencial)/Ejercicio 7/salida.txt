@@ -1,0 +1,5 @@
+Hay 4 numeros palindromos
+Hay 4 numeros primos
+5
+7
+11
