@@ -1,0 +1,4 @@
+Para ejecutar el fichero exe deberemos ejecutar el siguiente comando, ya que nuestro programa espera que le pasemos parámetros:
+.\dist\Main.exe .\entrada.txt .\salida.txt
+
+Este comando sería ejecutado en el directorio del Ejercicio 7

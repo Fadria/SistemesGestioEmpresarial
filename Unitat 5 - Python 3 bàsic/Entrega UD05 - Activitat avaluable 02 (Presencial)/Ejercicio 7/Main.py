@@ -1,6 +1,20 @@
 import sys # Librería usada para leer los datos enviados por el usuario desde la terminal al ejecutar el fichero .py
+import doctest # Librería usada para realizar tests unitarios
 
 def esPalindromo(numero):
+    """
+    Dado un número, nos devuelve 1 si es palíndromo y 0 si no lo es
+
+    # Indicamos el tipo del parámetro enviado y esperado
+    :param a: String
+    :return: int
+
+    # Llamada a la función simulada, donde enviaremos el String 11
+    # Si usamos otro número, por ejemplo 23, el test nos indicará que la función ha fallado, al devolver 0
+    >>> esPalindromo("11") 
+    1
+    """
+
     if len(numero) == 1:
         return 1 # Al ser un único número se lee igual de izquierda a derecha
     
@@ -27,9 +41,24 @@ def esPalindromo(numero):
                 return 0 # No se cumple la condición, descartamos que sea un palíndromo
 
     return 1 # Se han superado los filtros anteriores, es un palíndromo
+doctest.testmod() # Se ejecuta el test unitario de la función
 
 def esPrimo(numero):
     
+    """
+    Dado un número, nos devuelve 1 si es primo y 0 si no lo es
+
+    # Indicamos el tipo del parámetro enviado y esperado
+    :param a: String
+    :return: int
+
+    # Llamada a la función simulada, donde enviaremos el String 5
+    # Respuesta esperada: Si usamos un número que no es primo, el test nos indicará que la función ha fallado, al devolver 0
+
+    >>> esPalindromo("5")
+    1
+    """
+
     contador = 2 # Variable que dividiremos por el número para comprobar si es primo
     
     while(contador < int(numero)): # El contador irá desde el número 2 hasta nuestro número -1
@@ -38,6 +67,7 @@ def esPrimo(numero):
         contador = contador +1 # Incrementamos nuestro contador
 
     return 1
+doctest.testmod() # Se ejecuta el test unitario de la función
 
 numPalindromos = 0 # Contador de números palíndromos
 numPrimos = 0 # Contador de números primos
