@@ -1,28 +1,20 @@
-from sqlalchemy.sql.expression import null
+import db # Importamos nuestro fichero db para usar db.Base como el padre de nuestra clase
+from sqlalchemy import Column, Integer, String, ForeignKey # Tipos de datos que usaremos en nuestra tabla
+from sqlalchemy.orm import relationship # Librería usada para indicar datos relacionados con las relaciones
 
-import db
-from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
-from sqlalchemy.orm import relationship
-
-# Heredamos de object para obtener una clase.
+# Heredamos de db.Base para que nuestra base de datos funcione como un ORM
 class Profesor(db.Base):
 
-    __tablename__ = 'profesores'
+    __tablename__ = 'profesores' # Nombre de la tabla de la base de datos
     
-    id = Column(Integer, primary_key=True)
-    nombre = Column(String)
-    tipo = Column(String)
-    alumnos = relationship('Alumno', backref='tutor')
-    escuela = Column(Integer, ForeignKey('escuelas.id'))
-
-    def __repr__(self):
-        return f'Profesor({self.nombre}, {self.tipo})'
-        
-    def __str__(self):
-        return self.nombre
+    id = Column(Integer, primary_key=True) # Clave primaria
+    nombre = Column(String) # Campo nombre de tipo String
+    tipo = Column(String) # Campo tipo de tipo String
+    escuela = Column(Integer, ForeignKey('escuelas.id'), nullable=True) # Clave ajena de la tabla
+    alumnos = relationship('Alumno', backref='tutor') # Línea usada para poder obtener los alumnos del profesor una vez insertados
 
     # Constructor de profesor
-    def __init__(self, nombre, tipo, escuela):
+    def __init__(self, nombre, tipo, escuela=None):
 
         # Si el sector del profesor no es uno de nuestra lista, lanzaremos una excepción
         if tipo.lower() not in ["ciencias", "letras", "otros"]:
@@ -31,7 +23,6 @@ class Profesor(db.Base):
         # Asignamos los argumentos recibidos a los atributos de la clase
         self.nombre = nombre
         self.tipo = tipo
-        self.empleado = False # Variable usada para verificar si tiene una escuela asignada
         self.escuela = escuela
         
     # Actualizamos el nombre del profesor

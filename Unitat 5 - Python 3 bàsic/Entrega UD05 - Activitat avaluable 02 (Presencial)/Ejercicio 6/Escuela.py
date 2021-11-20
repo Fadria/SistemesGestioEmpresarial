@@ -1,23 +1,18 @@
-from Profesor import Profesor
-from Alumno import Alumno
+import db # Importamos nuestro fichero db para usar db.Base como el padre de nuestra clase
+from sqlalchemy import Column, Integer, String # Tipos de datos que usaremos en nuestra tabla
+from sqlalchemy.orm import relationship # Librería usada para indicar datos relacionados con las relaciones
 
-from sqlalchemy.sql.expression import null
-
-import db
-from sqlalchemy import Column, Integer, String, Float, Boolean
-from sqlalchemy.orm import relationship
-
-# Heredamos de object para obtener una clase.
+# Heredamos de db.Base para que nuestra base de datos funcione como un ORM
 class Escuela(db.Base):
 
-    __tablename__ = 'escuelas'
+    __tablename__ = 'escuelas' # Nombre de la tabla de la base de datos
     
-    id = Column(Integer, primary_key=True)
-    nombre = Column(String)
-    localidad = Column(String)
-    responsable = Column(Integer)
-    alumnos = relationship('Alumno', backref='escuelaAlumno')
-    profesores = relationship('Profesor', backref='escuelaProfesor')
+    id = Column(Integer, primary_key=True) # Clave primaria
+    nombre = Column(String) # Campo nombre de tipo String
+    localidad = Column(String) # Campo localidad de tipo String
+    responsable = Column(Integer) # Campo responsable de tipo Integer
+    alumnos = relationship('Alumno', backref='escuelaAlumno') # Línea usada para poder obtener los alumnos de la escuela una vez insertados
+    profesores = relationship('Profesor', backref='escuelaProfesor') # Línea usada para poder obtener los profesores de la escuela una vez insertados
 
     # Constructor de alumno, alumnos y profesores no serán obligatorios cuando creemos el objeto
     def __init__(self, nombre, localidad, responsable):

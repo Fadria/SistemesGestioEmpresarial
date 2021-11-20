@@ -4,8 +4,13 @@ from Profesor import Profesor
 from Escuela import Escuela
 
 def run():
-    a1 = Alumno(nombre="Diego Fernández", curso="2ºDAM")
+    p1 = Profesor(nombre="Sebastián Rodríguez", tipo="otros")
+    db.session.add(p1)
+    db.session.commit()
+    a1 = Alumno(nombre="Diego Fernández", curso="2ºDAM", profesor=p1.id, escuela=None)
     db.session.add(a1)
+    e1 = Escuela(nombre="Serra Perenxisa", localidad="Torrent", responsable=p1.id)
+    db.session.add(e1)
     db.session.commit()
     pass
 

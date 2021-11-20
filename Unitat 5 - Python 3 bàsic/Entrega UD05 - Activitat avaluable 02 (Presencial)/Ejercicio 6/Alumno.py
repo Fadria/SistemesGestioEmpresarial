@@ -1,17 +1,15 @@
-from sqlalchemy.sql.expression import null
-from Profesor import Profesor
+import db # Importamos nuestro fichero db para usar db.Base como el padre de nuestra clase
+from sqlalchemy import Column, Integer, String, ForeignKey # Tipos de datos que usaremos en nuestra tabla
 
-import db
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-
-# Heredamos de object para obtener una clase.
+# Heredamos de db.Base para que nuestra base de datos funcione como un ORM
 class Alumno(db.Base):
-    __tablename__ = 'alumnos'
+    __tablename__ = 'alumnos' # Nombre de la tabla de la base de datos
     
-    id = Column(Integer, primary_key=True)
-    nombre = Column(String)
-    curso = Column(String)
+    id = Column(Integer, primary_key=True) # Clave primaria
+    nombre = Column(String) # Campo nombre de tipo String
+    curso = Column(String) # Campo curso de tipo String
+
+    # Claves ajenas de la tabla, indicamos el nombre de ella y el campo al que la variable queda enlazado
     profesor = Column(Integer, ForeignKey('profesores.id'))
     escuela = Column(Integer, ForeignKey('escuelas.id'))
 
