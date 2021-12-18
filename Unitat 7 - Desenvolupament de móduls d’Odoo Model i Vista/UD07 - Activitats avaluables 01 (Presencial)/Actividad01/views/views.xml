@@ -4,7 +4,7 @@
 
     <!-- Vista Tree -->
     <record model="ir.ui.view" id="lista_tareas">
-      <field name="name">Lista de tareas</field>
+      <field name="name">Lista de tareas tree</field>
       <field name="model">lista_tareas.lista</field>
       <field name="arch" type="xml">
         <tree>
@@ -18,8 +18,32 @@
       </field>
     </record>
 
+    <!-- Vista Kanban -->
+    <record id="myKanban" model="ir.ui.view">
+      <field name="name">Lista de tareas kanban</field>
+      <field name="model">lista_tareas.lista</field>
+      <field name="arch" type="xml">
+          <kanban>
+              <!-- Indicamos que atributos usaremos al hacer la vista Kanban -->
+              <field name="tarea"/>
+              <field name="urgente"/>
+              <field name="fechaAsignada"/>
+                  <!-- Plantilla QWeb para indicar como es la tarjeta Kanban-->
+              <templates>
+                  <t t-name="kanban-box">
+                      <div class="oe_kanban_card oe_kanban_global_click">
+                          <field name="tarea"/>
+                          <field name="urgente"/>
+                          <field name="fechaAsignada"/>            
+                      </div>
+                  </t>
+              </templates>
+          </kanban>
+      </field>
+  </record>
+
     <!-- Vista Calendar -->
-    <record model="ir.ui.view" id="calendar">
+    <record model="ir.ui.view" id="myCalendar">
       <field name="name">Lista de tareas</field>
       <field name="model">lista_tareas.lista</field>
       <field name="arch" type="xml">
