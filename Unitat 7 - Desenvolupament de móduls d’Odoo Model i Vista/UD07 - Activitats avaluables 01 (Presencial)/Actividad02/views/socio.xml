@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='socio_action' model='ir.actions.act_window'>
+        <field name="name">Listado de socios</field>
+        <field name="res_model">socio</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Añadimos esta vista al menú principal -->
+    <menuitem name="Socios" id="socio_menu" parent="biblioteca_base_menu" action="socio_action" />
+
+    <!-- Vista en formato árbol -->
+    <record id="socio_view_tree" model="ir.ui.view">
+        <field name="name">Lista de Socios</field>
+        <field name="model">socio</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="identificador" />
+                <field name="nombre" />
+                <field name="apellidos" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista usada en el formulario -->
+    <record id="socio_view_form" model="ir.ui.view">
+        <field name="name">Nuevo socio</field>
+        <field name="model">socio</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="identificador" />
+                    <field name="nombre" />
+                    <field name="apellidos" />    
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>
