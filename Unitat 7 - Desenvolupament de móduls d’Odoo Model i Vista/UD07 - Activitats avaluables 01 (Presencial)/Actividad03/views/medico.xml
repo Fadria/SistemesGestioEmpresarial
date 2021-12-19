@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='medico_action' model='ir.actions.act_window'>
+        <field name="name">Listado de medicos</field>
+        <field name="res_model">medico</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Médicos" id="medicos" action="medico_action" parent="hospital_menu"/>
+
+    <!-- Vista en formato árbol -->
+    <record id="medico_tree" model="ir.ui.view">
+        <field name="name">Lista de medicos</field>
+        <field name="model">medico</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre_completo" />
+                <field name="numero_colegiado" />
+            </tree>
+        </field>
+    </record>
+</odoo>

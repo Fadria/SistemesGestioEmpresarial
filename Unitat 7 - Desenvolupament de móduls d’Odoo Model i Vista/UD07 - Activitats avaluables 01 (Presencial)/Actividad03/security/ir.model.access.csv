@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_paciente,paciente_default,model_paciente,base.group_user,1,1,1,1
+acl_medico,medico_default,model_medico,base.group_user,1,1,1,1
+acl_diagnostico,diagnostico_default,model_diagnostico,base.group_user,1,1,1,1
