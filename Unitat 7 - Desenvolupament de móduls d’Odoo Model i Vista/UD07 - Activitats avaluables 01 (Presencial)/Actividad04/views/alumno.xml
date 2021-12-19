@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='alumno_action' model='ir.actions.act_window'>
+        <field name="name">Listado de alumnos</field>
+        <field name="res_model">alumno</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Alumnos" id="alumnos" action="alumno_action" parent="instituto_menu"/>
+
+    <!-- Vista en formato árbol -->
+    <record id="alumno_tree" model="ir.ui.view">
+        <field name="name">Lista de alumnos</field>
+        <field name="model">alumno</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre_completo" />
+                <field name="dni" />
+                <field name="email" />
+                <field name="telefono" />
+                <field name="fecha_nacimiento" />
+                <field name="ciudad" />
+                <field name="provincia" />
+                <field name="direccion" />
+            </tree>
+        </field>
+    </record>
+</odoo>

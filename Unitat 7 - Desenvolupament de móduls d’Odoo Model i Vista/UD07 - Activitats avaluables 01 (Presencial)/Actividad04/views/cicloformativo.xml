@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='cicloformativo_action' model='ir.actions.act_window'>
+        <field name="name">Listado de ciclos formativos</field>
+        <field name="res_model">cicloformativo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Ciclos formativos" id="cicloformativos" action="cicloformativo_action" parent="instituto_menu"/>
+
+    <!-- Vista en formato árbol -->
+    <record id="cicloformativo_tree" model="ir.ui.view">
+        <field name="name">Lista de cicloformativos</field>
+        <field name="model">cicloformativo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ciclo" />
+                <field name="modulos" />
+            </tree>
+        </field>
+    </record>
+</odoo>
