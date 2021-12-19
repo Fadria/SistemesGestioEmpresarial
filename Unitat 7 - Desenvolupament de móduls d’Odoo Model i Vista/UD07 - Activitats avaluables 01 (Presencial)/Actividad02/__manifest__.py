@@ -25,6 +25,7 @@ Gestor de bibliotecas (Version Simple)
         #Cargamos la vista de la biblioteca de comics
         'views/biblioteca_comic.xml',
         'views/socio.xml',
+        'views/prestamo_libros.xml',
     ],
     # Fichero con data de demo si se inicializa la base de datos con "demo data" (No incluido en ejemplo)
     # 'demo': [
