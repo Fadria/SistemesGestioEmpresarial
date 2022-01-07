@@ -10,10 +10,6 @@ from io import BytesIO
 import barcode
 from barcode.writer import ImageWriter
 
-from PIL import Image
-import os
-import io
-
 # Clase del controlador web
 class GenerarBarcode(http.Controller):
     
@@ -41,23 +37,3 @@ class GenerarBarcode(http.Controller):
         img_str = base64.b64encode(fp.getvalue()).decode("utf-8")
         #Devolvemos el HTML que muestra la imagen generada, pasada como base64
         return '<div><img src="data:image/png;base64,'+str(img_str)+'"/></div>'
-
-    # URL Ejemplo: http://localhost:8069/generarImagen/500/500
-    @http.route('/generarImagen/<ancho>/<largo>', auth='public', cors='*', type='http')
-    def crearImagen(self, ancho, largo, **kw): # Recibimos el ancho y largo de la URL
-        size = (int(ancho), int(largo)) # Tamaño de la imagen
-        im = Image.new('RGB', size) # Creamos la imagen
-
-        def ran():
-            return os.urandom(int(ancho)*int(largo))
-
-        pixels = zip(ran(), ran(), ran()) # Obtenemos una lista con los píxeles de la foto
-        im.putdata(list(pixels)) # Añadimos los datos a nuestra imagen
-        
-        # Obtenemos el valor de la imagen
-        with io.BytesIO() as output:
-            im.save(output, format="JPEG")
-            contents = output.getvalue()
-        
-        # Mostramos la imagen en la URL solicitada por el usuario
-        return '<div><img src="data:image/jpeg;base64,'+str(base64.b64encode(contents).decode("utf-8"))+'"/></div>'

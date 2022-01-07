@@ -19,6 +19,8 @@
     #docker-compose exec web bash
     #y tras ello pip3 instal python-barcode y luego pip3 install python-barcode[images]
 
+    # Para la librería Pillow usaríamos python3 -m pip install --upgrade pip
+
     #Dependencias externas de https://pypi.org/project/python-barcode/
     'external_dependencies': {"python": ['python-barcode',"python-barcode[images]", "PIL"], "bin": []},
     'data': [
