@@ -3,10 +3,11 @@
 
 <record id='liga_partido_wizard_form' model='ir.ui.view'>
     <field name='name'>Wizard para introducir un partido</field>
-    <field name='model'>liga.partido.wizard</field>
+    <field name='model'>liga.partido.wizard</field> <!--  Modelo utilizado -->
     <field name='arch' type='xml'>
         <form string="Introducir datos de un partido">
             <sheet>
+                <!-- Campos del formulario -->
                 <group>
                     <field name='equipo_casa'/>
                 </group>
@@ -21,6 +22,7 @@
                 </group>
             </sheet>
             <footer>
+                <!-- Botones para confirmar los datos o cancelar la creación-->
                 <button string='Añadir' name='add_liga_partido' class='btn-primary' type='object'/>
                 <button string='Cancel' class='btn-default' special='cancel'/>
             </footer>

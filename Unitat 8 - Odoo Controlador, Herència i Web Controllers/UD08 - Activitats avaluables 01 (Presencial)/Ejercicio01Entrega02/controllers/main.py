@@ -21,3 +21,23 @@ class Main(http.Controller):
         json_result=json.dumps(listaDatosEquipos)
 
         return json_result
+
+    # Indicamos la URL donde ejecutaremos la siguiente función
+    # Lo ejecutaríamos en la URL http://localhost:8069/ligafutbol/eliminarempates
+    @http.route('/ligafutbol/eliminarempates', auth='public', website=True)
+    def eliminarEmpatesPartidos(self, **kw):
+        # Variable que usaremos para contar cada empate que eliminamos
+        partidosEliminados = 0
+
+        # En primer lugar obtenemos el listado de todos los partidos
+        listadoPartidos = request.env['liga.partido'].sudo().search([])
+
+        for partido in listadoPartidos: # Acciones ejecutadas para cada partido
+            if (partido.goles_casa == partido.goles_fuera): # Si los dos equipos marcan los mismos goles procederemos
+                partidosEliminados += 1 # Aumentamos en 1 la cantidad de partidos eliminados
+                partido.unlink() # Eliminamos el registro de la base de datos
+
+        request.env['liga.partido'].actualizoRegistrosEquipo() # Actualizamos la clasificación
+
+        # Mostramos un mensaje al usuario informando el total de partidos eliminados
+        return "Se han eliminado un total de " + str(partidosEliminados) + " partidos que eran empates."

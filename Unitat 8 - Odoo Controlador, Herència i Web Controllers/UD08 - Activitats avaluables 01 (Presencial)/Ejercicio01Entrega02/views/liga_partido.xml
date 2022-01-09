@@ -39,6 +39,12 @@
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
             <tree>
+                <!-- Botones para sumar goles a los equipos -->
+                <header>
+                    <button name ="action_sumar_casa" string="Sumar 2 goles a casa" type="object" />
+                    <button name ="action_sumar_fuera" string="Sumar 2 goles a fuera" type="object" />
+                </header>
+
                 <!-- Indicamos que atributos usaremos al hacer la vista Tree -->
                 <field name="equipo_casa" />
                 <field name="goles_casa" />
@@ -51,15 +57,15 @@
 
     <!-- Vista Graph para mostrar los goles marcados en casa -->
     <record model="ir.ui.view" id="liga_equipo_view_graph">
-        <field name="name">Goles en casa</field>
-        <field name="model">liga.partido</field>
-        <field name="type">graph</field>
+        <field name="name">Goles en casa</field> <!-- Nombre del formulario -->
+        <field name="model">liga.partido</field> <!-- Modelo utilizado -->
+        <field name="type">graph</field> <!--  Indicamos que es una vista de tipo gráfico -->
         <field name="arch" type="xml">
-                <graph string="Puntos por casa">
-                <field name="equipo_casa" group="True" type="row"/>
-                <field name="goles_casa" group="True" type="measure"/>
-                </graph>
-            </field>
+            <graph string="Puntos por casa"> <!-- El título será Puntos por casa -->
+                <field name="equipo_casa" group="True" type="row"/> <!-- Cada fila será un equipo -->
+                <field name="goles_casa" group="True" type="measure"/> <!-- El valor a medir serán los goles en casa -->
+            </graph>
+        </field>
         </record>
 
     <!-- Vista Kanban -->

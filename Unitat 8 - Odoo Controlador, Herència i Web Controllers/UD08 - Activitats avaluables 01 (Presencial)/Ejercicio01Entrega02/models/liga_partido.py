@@ -53,8 +53,17 @@ class LigaPartido(models.Model):
                 raise models.ValidationError('Los equipos del partido deben ser diferentes.')
 
 
+    # Función usasda para sumar 2 goles en los equipos de casa
+    def action_sumar_casa(self):
+        for record in self: # Por cada partido
+            record.goles_casa +=2 # Aumentamos los goles en casa
+        self.actualizoRegistrosEquipo() # Actualizamos la clasificación
 
-
+    # Función usasda para sumar 2 goles en los equipos de fuera
+    def action_sumar_fuera(self):
+        for record in self: # Por cada partido
+            record.goles_fuera +=2 # Aumentamos los goles de fuera
+        self.actualizoRegistrosEquipo() # Actualizamos la clasificación
     
     '''
     Funcion para actualizar la clasificacion de los equipos, re-calculandola entera
