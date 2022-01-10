@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='empleados_action' model='ir.actions.act_window'>
+        <field name="name">Empleados</field> <!-- Nombre de la ventana -->
+        <field name="res_model">empleados</field> <!-- Indicamos el modelo en el que se basa la vista -->
+        <field name="view_mode">tree,form</field> <!-- Indicamos los diferentes modos de visualización -->
+    </record>
+
+    <!-- Menú principal de la aplicación, es el primero que veremos en Odoo, cuando pulsemos el botón de aplicaciones -->
+    <menuitem name="Empresa de transportes" id="empresa_transportes" />
+
+    <!-- Añadimos esta vista al menú principal -->
+    <menuitem name="Empleados" id="empleados" action="empleados_action" parent="empresa_transportes"/>
+
+    <!-- Vista en formato de árbol -->
+    <record id="empleados_tree" model="ir.ui.view">
+        <field name="name">Lista de empleados</field> <!-- Nombre de la vista -->
+        <field name="model">empleados</field> <!-- Modelo usado en la vista -->
+        <field name="arch" type="xml">
+            <tree> <!-- Indicamos los campos del modelo a mostrar -->
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="dni"/>
+                <field name="telefono"/>
+                <field name="carnet_ciclomotor"/>
+                <field name="carnet_furgoneta"/>
+                <field name="foto" widget="image" class="oe_avatar"/>            
+            </tree>
+        </field>
+    </record>
+</odoo>
