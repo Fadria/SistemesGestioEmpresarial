@@ -20,6 +20,7 @@
         #Aqui distintas vistas de equipo (vistas diferentes, mismo modelo)
         'views/empleados.xml',
         'views/vehiculos.xml',
+        'views/clientes.xml',
     ],
     # Fichero con data de demo si se inicializa la base de datos con "demo data" (No incluido en ejemplo)
     # 'demo': [

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='clientes_action' model='ir.actions.act_window'>
+        <field name="name">Clientes</field> <!-- Nombre de la ventana -->
+        <field name="res_model">clientes</field> <!-- Indicamos el modelo en el que se basa la vista -->
+        <field name="view_mode">tree,form</field> <!-- Indicamos los diferentes modos de visualización -->
+    </record>
+
+    <!-- Añadimos esta vista al menú principal -->
+    <menuitem name="Clientes" id="clientes" action="clientes_action" parent="empresa_transportes"/>
+
+    <!-- Vista en formato de árbol -->
+    <record id="clientes_tree" model="ir.ui.view">
+        <field name="name">Lista de clientes</field> <!-- Nombre de la vista -->
+        <field name="model">clientes</field> <!-- Modelo usado en la vista -->
+        <field name="arch" type="xml">
+            <tree> <!-- Indicamos los campos del modelo a mostrar -->
+                <field name="dni"/>
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="telefono"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

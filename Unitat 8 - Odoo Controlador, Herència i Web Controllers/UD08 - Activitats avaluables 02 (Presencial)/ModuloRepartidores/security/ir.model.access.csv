@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acl_empleados,empleados_default,model_empleados,,1,1,1,1
 acl_vehiculos,vehiculos_default,model_vehiculos,,1,1,1,1
+acl_clientes,clientes_default,model_clientes,,1,1,1,1
