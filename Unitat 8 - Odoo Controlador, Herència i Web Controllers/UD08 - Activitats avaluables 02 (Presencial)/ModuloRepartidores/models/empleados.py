@@ -31,4 +31,4 @@ class Empleados(models.Model):
     telefono = fields.Char("Teléfono")
     carnet_ciclomotor = fields.Boolean("Carnet de ciclomotor")
     carnet_furgoneta = fields.Boolean("Carnet de furgoneta")
-    foto = fields.Image('Foto Empleado',max_width=50,max_height=50)
+    foto = fields.Image('Foto Empleado', max_width=50, max_height=50)

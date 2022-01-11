@@ -3,3 +3,4 @@ acl_empleados,empleados_default,model_empleados,,1,1,1,1
 acl_vehiculos,vehiculos_default,model_vehiculos,,1,1,1,1
 acl_clientes,clientes_default,model_clientes,,1,1,1,1
 acl_repartos,repartos_default,model_repartos,,1,1,1,1
+acl_repartos_wizard,repartos_wizard,model_repartos_wizard,,1,1,1,1
