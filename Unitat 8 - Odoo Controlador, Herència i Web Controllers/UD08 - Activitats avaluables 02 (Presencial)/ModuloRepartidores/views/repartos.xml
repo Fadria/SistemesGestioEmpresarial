@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='repartos_action' model='ir.actions.act_window'>
+        <field name="name">repartos</field> <!-- Nombre de la ventana -->
+        <field name="res_model">repartos</field> <!-- Indicamos el modelo en el que se basa la vista -->
+        <field name="view_mode">tree,form</field> <!-- Indicamos los diferentes modos de visualización -->
+    </record>
+
+    <!-- Menú principal de la aplicación, es el primero que veremos en Odoo, cuando pulsemos el botón de aplicaciones -->
+    <menuitem name="Empresa de transportes" id="empresa_transportes" />
+
+    <!-- Añadimos esta vista al menú principal -->
+    <menuitem name="Repartos" id="repartos" action="repartos_action" parent="empresa_transportes"/>
+
+    <!-- Vista en formato de árbol -->
+    <record id="repartos_tree" model="ir.ui.view">
+        <field name="name">Lista de repartos</field> <!-- Nombre de la vista -->
+        <field name="model">repartos</field> <!-- Modelo usado en la vista -->
+        <field name="arch" type="xml">
+            <tree> <!-- Indicamos los campos del modelo a mostrar -->
+                <field name="reparto_id"/>
+                <field name="fecha_comienzo"/>
+                <field name="fecha_regreso"/>
+                <field name="fecha_recepcion"/>
+                <field name="repartidor"/>
+                <field name="vehiculo"/>
+                <field name="kilometros"/>
+                <field name="peso"/>
+                <field name="volumen"/>
+                <field name="observaciones"/>
+                <field name="estado"/>
+                <field name="emisor"/>
+                <field name="receptor"/>                
+            </tree>
+        </field>
+    </record>
+
+    <record id="increment_your_field_sequence" model="ir.sequence">
+        <field name="name">Field Incrementation</field>
+        <field name="code">increment_your_field</field>
+        <field name="prefix"></field>
+        <field name="padding">3</field>
+    </record>
+</odoo>
