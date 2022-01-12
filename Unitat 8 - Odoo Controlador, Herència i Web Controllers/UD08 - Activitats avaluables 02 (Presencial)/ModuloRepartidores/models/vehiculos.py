@@ -15,8 +15,8 @@ class Vehiculos(models.Model):
     
     # Indicamos que atributo sera el que se usara para mostrar nombre.
     # Por defecto es "name", pero si no hay un atributo que se llama name, aqui lo indicamos
-    # Aqui indicamos que se use el atributo "tipo"
-    _rec_name = 'tipo'    
+    # Aqui indicamos que se use el atributo "matricula"
+    _rec_name = 'matricula'    
 
 
     # Variable de donde obtendremos los tipos de vehículos usados en la empresa
