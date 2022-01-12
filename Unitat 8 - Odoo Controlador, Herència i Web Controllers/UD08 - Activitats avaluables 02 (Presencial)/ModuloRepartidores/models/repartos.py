@@ -80,3 +80,27 @@ class Repartos(models.Model):
             # Si es un reparto con furgoneta y el repartidor no tiene el carnet lo informaremos en un error
             elif record.vehiculo.tipo == "furgoneta" and record.repartidor.carnet_furgoneta == False:
                 raise models.ValidationError('El repartidor indicado no tiene carnet de furgoneta.')
+
+    # Indicamos que esta funcion es una "Constraints" de ese atributo
+    # Dicho de otra forma, cada vez que se cambie ese atributo, se lanzara esta funcion
+    # Y si la funcion detecta un cambio inadecuado, cambiara una instruccion
+    # Util cuando la constraint no se puede definir con sintaxis SQL y debe indicar en una funcion
+    @api.constrains('repartidor')
+    def _validar_disponibilidad(self):
+        # En primer lugar obtenemos el listado de todos los repartos
+        repartos = self.env["repartos"].sudo().search([])
+
+        for record in self: # Accederemos al reparto que estamos creando
+            for reparto in repartos: # Acciones ejecutadas por cada reparto creado
+                '''
+                    Cuando obtenemos todos los repartos, ya tendríamos dentro de esta lista el reparto nuevo, por lo que siempre
+                    levantaríamos el error cuando tenemos el estado "en curso", ya que lo comparamos consigo mismo.
+                    Para evitar esto haremos que la id del reparto a comparar sea distinto a la del reparto a crear.
+                '''
+                if record.id != reparto.id:
+                    # Si tenemos el mismo repartidor que en otro reparto en curso lanzaremos un error
+                    if record.repartidor.dni ==  reparto.repartidor.dni and reparto.estado == "encamino" and record.estado == "encamino":
+                        raise models.ValidationError('El repartidor ya se encuentra en un reparto')
+                    # Si tenemos el mismo vehículo que en otro reparto en curso lanzaremos un error
+                    elif record.vehiculo.matricula == reparto.vehiculo.matricula and reparto.estado == "encamino" and record.estado == "encamino":
+                        raise models.ValidationError('El vehículo ya está en uso')
