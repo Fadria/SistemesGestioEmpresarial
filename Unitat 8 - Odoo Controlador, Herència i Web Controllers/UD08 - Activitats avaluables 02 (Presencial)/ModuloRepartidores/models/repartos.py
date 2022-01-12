@@ -65,3 +65,18 @@ class Repartos(models.Model):
             elif record.kilometros < 1 and record.vehiculo.tipo == "furgoneta":
                 # Levantamos un error para informar al usuario
                 raise models.ValidationError('Los repartos de menos de 1 kilómetro no se pueden realizar en furgoneta.')
+
+    # Indicamos que esta funcion es una "Constraints" de ese atributo
+    # Dicho de otra forma, cada vez que se cambie ese atributo, se lanzara esta funcion
+    # Y si la funcion detecta un cambio inadecuado, cambiara una instruccion
+    # Util cuando la constraint no se puede definir con sintaxis SQL y debe indicar en una funcion
+    @api.constrains('repartidor')
+    def _validar_carnet_repartidor(self):
+        # Recorremos el modelo
+        for record in self:
+            # Si es un reparto con ciclomotor y el repartidor no tiene el carnet lo informaremos en un error
+            if record.vehiculo.tipo == "ciclomotor" and record.repartidor.carnet_ciclomotor == False:
+                raise models.ValidationError('El repartidor indicado no tiene carnet de ciclomotor.')
+            # Si es un reparto con furgoneta y el repartidor no tiene el carnet lo informaremos en un error
+            elif record.vehiculo.tipo == "furgoneta" and record.repartidor.carnet_furgoneta == False:
+                raise models.ValidationError('El repartidor indicado no tiene carnet de furgoneta.')
