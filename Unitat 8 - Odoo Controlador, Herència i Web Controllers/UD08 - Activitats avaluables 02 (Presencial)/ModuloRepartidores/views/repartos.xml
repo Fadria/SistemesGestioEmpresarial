@@ -18,9 +18,8 @@
         <field name="name">Lista de repartos</field> <!-- Nombre de la vista -->
         <field name="model">repartos</field> <!-- Modelo usado en la vista -->
         <field name="arch" type="xml">
-            <!-- Indicamos los campos del modelo a mostrar y los colores que corresponderán a cada urgencia del reparto -->
-            <tree decoration-danger="urgencia_reparto=='4'" decoration-warning="urgencia_reparto=='3'" decoration-primary="urgencia_reparto=='2'" 
-            decoration-info="urgencia_reparto=='1'" decoration-muted="urgencia_reparto=='0'"> 
+            <!-- Indicamos los campos del modelo a mostrar y los colores que corresponderán a cada estado del reparto -->
+            <tree decoration-danger="estado=='entregado'" decoration-primary="estado=='encamino'" decoration-info="estado=='nohasalido'"> 
                 <field name="reparto_id"/>
                 <field name="fecha_comienzo"/>
                 <field name="fecha_regreso"/>
