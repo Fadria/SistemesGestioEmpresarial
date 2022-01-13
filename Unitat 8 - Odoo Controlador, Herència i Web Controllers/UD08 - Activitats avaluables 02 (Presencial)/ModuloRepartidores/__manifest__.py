@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Empresa de transportes",  # Titulo del módulo
+    'name': "ModuloRepartidores",  # Titulo del módulo
     'summary': "Módulo destinado a ser utilizado por empresas de transportes para controlar los diferentes datos de ella",  # Resumen de la funcionaliadad
     'description': """
     Módulo empresa de transportes
@@ -22,6 +22,8 @@
         'views/vehiculos.xml',
         'views/clientes.xml',
         'views/repartos.xml',
+
+        'report/entregas_report.xml',
 
         'wizard/repartos_wizard.xml'
     ],

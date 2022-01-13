@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Ejemplo de informe asociado a partido (se genera al darle  aimprimir 
+        desde la vista Form de un partido) -->
+    <template id="report_entregas_view">
+        <!-- Aqui la estructura a seguir -->
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <h2 t-field="doc.id" />
+                        <!-- Datos del partido-->
+                        <p>
+                            DNI empleado:
+                            <span t-field="doc.dni" />
+                        </p>
+
+                        <h2>Tus repartos: </h2>
+
+                        <tr t-foreach='doc.repartos' t-as='line'>
+                            <div t-if="line.estado == 'nohasalido'">
+                                <p>ID: <span t-esc="line.reparto_id"/></p>
+                                <p>Fecha de recepción <span t-esc="line.fecha_recepcion"/></p>
+                                <p>Matrícula del vehículo: <span t-esc="line.vehiculo.matricula"/></p>
+                                <p>Kilómetros: <span t-esc="line.kilometros"/></p>
+                                
+                                <p>Peso: <span t-esc="line.peso"/></p>
+                                <p>Volumen: <span t-esc="line.volumen"/></p>
+                                <p>Estado: <span t-esc="line.estado"/></p>
+    
+                                <p>Urgencia: <span t-esc="line.urgencia_reparto"/></p>
+                                <p>DNI emisor: <span t-esc="line.emisor.dni"/></p>
+                                <p>DNI receptor: <span t-esc="line.receptor.dni"/></p>
+                                <br/><br/><br/>    
+                            </div>
+                        </tr>    
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Realmente, este es el informe, lo de arriba es la plantilla que utilizara el informe -->
+    <report id="report_entregas" model="empleados" string="Informe entregas pendientes de cada empleado" name="ModuloRepartidores.report_entregas_view" file="ModuloRepartidores.report_entregas_view" report_type="qweb-pdf" />
+
+</odoo>
