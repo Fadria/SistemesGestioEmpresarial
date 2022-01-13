@@ -25,7 +25,8 @@
                 <field name="telefono"/>
                 <field name="carnet_ciclomotor"/>
                 <field name="carnet_furgoneta"/>
-                <field name="foto" widget="image" class="oe_avatar"/>            
+                <field name="foto" widget="image" class="oe_avatar"/>  
+                <field name="repartos" widget="many2many"/>       
             </tree>
         </field>
     </record>

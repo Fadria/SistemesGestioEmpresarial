@@ -47,7 +47,7 @@ class Repartos(models.Model):
     reparto_id = fields.Integer(string = "ID Reparto", readonly = True, default = lambda self: self.env['ir.sequence'].next_by_code('increment_your_field'))
     fecha_comienzo = fields.Datetime("Fecha y hora de comienzo")
     fecha_regreso = fields.Datetime("Fecha y hora de regreso")
-    fecha_recepcion = fields.Datetime("Fecha y hora de recepcióon")
+    fecha_recepcion = fields.Datetime("Fecha y hora de recepción")
     repartidor = fields.Many2one("empleados", "Repartidor")
     vehiculo = fields.Many2one("vehiculos", "Vehículo")
     kilometros = fields.Float("Kilómetros")
@@ -59,7 +59,6 @@ class Repartos(models.Model):
     urgencia_reparto = fields.Selection(URGENCIA, default=URGENCIA[4][0])
     emisor = fields.Many2one("clientes", "Emisor")
     receptor = fields.Many2one("clientes", "Receptor")
-
 
     # Indicamos que esta funcion es una "Constraints" de ese atributo
     # Dicho de otra forma, cada vez que se cambie ese atributo, se lanzara esta funcion

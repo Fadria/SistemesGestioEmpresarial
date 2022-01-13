@@ -32,3 +32,4 @@ class Empleados(models.Model):
     carnet_ciclomotor = fields.Boolean("Carnet de ciclomotor")
     carnet_furgoneta = fields.Boolean("Carnet de furgoneta")
     foto = fields.Image('Foto Empleado', max_width=50, max_height=50)
+    repartos = fields.One2many("repartos", "repartidor")
