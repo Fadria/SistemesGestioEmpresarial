@@ -9,8 +9,11 @@ class Repartos(models.Model):
     _name = 'repartos'
     _description = 'Repartos de la empresa de transporte'
 
-    # Parametros de ordenacion por defecto
-    _order = 'fecha_comienzo'
+    '''
+        Parametros de ordenacion por defecto, en nuestro caso, pensamos que lo más adecuado es visualizar los pedidos más recientes
+        y dentro de ellos, los de mayor urgencia
+    '''
+    _order = 'fecha_recepcion desc, urgencia_reparto desc'
 
     # ATRIBUTOS
 
@@ -29,6 +32,15 @@ class Repartos(models.Model):
         ('entregada', 'Entregada')
     ]
 
+    # Variable de donde obtendremos la urgencia del reparto
+    URGENCIA = [
+        ('4', 'Órganos Humanos'),
+        ('3', 'Alimentos refrigerados'),
+        ('2', 'Alimentos'),
+        ('1', 'Alta prioridad'),
+        ('0', 'Baja prioridad')
+    ]
+
     #Elementos de cada fila del modelo de datos
     #Los tipos de datos a usar en el ORM son 
     # https://www.odoo.com/documentation/14.0/developer/reference/addons/orm.html#fields
@@ -44,6 +56,7 @@ class Repartos(models.Model):
     #Campo con HTML (Sanitizado) donde se guarda la descripción del vehículo
     observaciones = fields.Html('Descripción', sanitize=True, strip_style=False)
     estado = fields.Selection(ESTADOSREPARTO, default=ESTADOSREPARTO[0][0])
+    urgencia_reparto = fields.Selection(URGENCIA, default=URGENCIA[4][0])
     emisor = fields.Many2one("clientes", "Emisor")
     receptor = fields.Many2one("clientes", "Receptor")
 
