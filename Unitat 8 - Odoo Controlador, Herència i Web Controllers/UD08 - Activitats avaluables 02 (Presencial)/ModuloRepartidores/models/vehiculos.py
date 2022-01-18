@@ -29,7 +29,7 @@ class Vehiculos(models.Model):
     #Los tipos de datos a usar en el ORM son 
     # https://www.odoo.com/documentation/14.0/developer/reference/addons/orm.html#fields
 
-    tipo = fields.Selection(TIPOSVEHICULO, default=TIPOSVEHICULO[0][0])
+    tipo = fields.Selection(TIPOSVEHICULO, default=TIPOSVEHICULO[0][0]) # Campo de selección con las opciones de la variable TIPOSVEHICULO
     matricula = fields.Char("Matrícula")
     foto = fields.Image('Foto Vehículo',max_width=50,max_height=50)
     #Campo con HTML (Sanitizado) donde se guarda la descripción del vehículo

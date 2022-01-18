@@ -27,6 +27,7 @@
     </field>
 </record>
 
+<!-- Record que será usado para el campo auto incremental reparto_id -->
 <record id="increment_your_field_sequence" model="ir.sequence">
     <field name="name">Field Incrementation</field>
     <field name="code">increment_your_field</field>

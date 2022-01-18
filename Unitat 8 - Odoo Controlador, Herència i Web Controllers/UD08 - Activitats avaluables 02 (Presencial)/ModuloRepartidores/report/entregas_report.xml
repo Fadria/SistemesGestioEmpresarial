@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Ejemplo de informe asociado a partido (se genera al darle  aimprimir 
-        desde la vista Form de un partido) -->
+    <!-- Ejemplo de informe asociado a empleado (se genera al darle  aimprimir 
+        desde la vista Form de un empleado) -->
     <template id="report_entregas_view">
         <!-- Aqui la estructura a seguir -->
         <t t-call="web.html_container">
@@ -10,7 +10,7 @@
                 <t t-call="web.internal_layout">
                     <div class="page">
                         <h2 t-field="doc.id" />
-                        <!-- Datos del partido-->
+                        <!-- Datos del empleado-->
                         <p>
                             DNI empleado:
                             <span t-field="doc.dni" />
@@ -18,7 +18,9 @@
 
                         <h2>Tus repartos: </h2>
 
+                        <!-- Foreach usado para acceder a los datos de cada reparto-->
                         <tr t-foreach='doc.repartos' t-as='line'>
+                            <!-- Gracias al if únicamente mostraremos los repartos pendientes de este empleado -->
                             <div t-if="line.estado == 'nohasalido'">
                                 <p>ID: <span t-esc="line.reparto_id"/></p>
                                 <p>Fecha de recepción <span t-esc="line.fecha_recepcion"/></p>

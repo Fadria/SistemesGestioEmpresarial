@@ -26,7 +26,7 @@
                 <field name="carnet_ciclomotor"/>
                 <field name="carnet_furgoneta"/>
                 <field name="foto" widget="image" class="oe_avatar"/>  
-                <field name="repartos" widget="many2many"/>       
+                <field name="repartos" widget="many2many"/> <!-- Widget necesario para ver la lista de repartos en Odoo -->      
             </tree>
         </field>
     </record>

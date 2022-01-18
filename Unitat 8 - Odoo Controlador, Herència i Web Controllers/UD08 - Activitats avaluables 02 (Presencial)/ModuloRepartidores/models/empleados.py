@@ -29,7 +29,7 @@ class Empleados(models.Model):
     apellidos = fields.Char("Apellidos")
     dni = fields.Char("DNI")
     telefono = fields.Char("Teléfono")
-    carnet_ciclomotor = fields.Boolean("Carnet de ciclomotor")
-    carnet_furgoneta = fields.Boolean("Carnet de furgoneta")
+    carnet_ciclomotor = fields.Boolean("Carnet de ciclomotor") # Los campos de tipo booleanos serán un check que el usuario marque
+    carnet_furgoneta = fields.Boolean("Carnet de furgoneta") # Los campos de tipo booleanos serán un check que el usuario marque
     foto = fields.Image('Foto Empleado', max_width=50, max_height=50)
-    repartos = fields.One2many("repartos", "repartidor")
+    repartos = fields.One2many("repartos", "repartidor") # Relación con la tabla repartos, su contraparte será el campo repartidor de esa tabla

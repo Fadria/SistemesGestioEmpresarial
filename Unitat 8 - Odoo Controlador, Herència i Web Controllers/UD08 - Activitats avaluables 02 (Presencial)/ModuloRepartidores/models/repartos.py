@@ -22,7 +22,7 @@ class Repartos(models.Model):
     
     # Indicamos que atributo sera el que se usara para mostrar nombre.
     # Por defecto es "name", pero si no hay un atributo que se llama name, aqui lo indicamos
-    # Aqui indicamos que se use el atributo "nombre"
+    # Aqui indicamos que se use el atributo "reparto_id"
     _rec_name = 'reparto_id'    
 
     # Variable de donde obtendremos los estados del reparto
@@ -32,7 +32,10 @@ class Repartos(models.Model):
         ('entregada', 'Entregada')
     ]
 
-    # Variable de donde obtendremos la urgencia del reparto
+    '''
+        Variable de donde obtendremos la urgencia del reparto, usamos números como valores para ordenar fácilmente los registros
+        empleando este campo para ello
+    '''
     URGENCIA = [
         ('4', 'Órganos Humanos'),
         ('3', 'Alimentos refrigerados'),
@@ -44,21 +47,23 @@ class Repartos(models.Model):
     #Elementos de cada fila del modelo de datos
     #Los tipos de datos a usar en el ORM son 
     # https://www.odoo.com/documentation/14.0/developer/reference/addons/orm.html#fields
+
+    # Campo con un valor que será auto incremental y asignado directamente
     reparto_id = fields.Integer(string = "ID Reparto", readonly = True, default = lambda self: self.env['ir.sequence'].next_by_code('increment_your_field'))
     fecha_comienzo = fields.Datetime("Fecha y hora de comienzo")
     fecha_regreso = fields.Datetime("Fecha y hora de regreso")
     fecha_recepcion = fields.Datetime("Fecha y hora de recepción")
-    repartidor = fields.Many2one("empleados", "Repartidor")
-    vehiculo = fields.Many2one("vehiculos", "Vehículo")
+    repartidor = fields.Many2one("empleados", "Repartidor") # Relación con el modelo de empleados
+    vehiculo = fields.Many2one("vehiculos", "Vehículo") # Relación con el modelo de vehículos
     kilometros = fields.Float("Kilómetros")
     peso = fields.Float("Peso en KG")
     volumen = fields.Float("Volumen del paquete")
     #Campo con HTML (Sanitizado) donde se guarda la descripción del vehículo
     observaciones = fields.Html('Descripción', sanitize=True, strip_style=False)
-    estado = fields.Selection(ESTADOSREPARTO, default=ESTADOSREPARTO[0][0])
-    urgencia_reparto = fields.Selection(URGENCIA, default=URGENCIA[4][0])
-    emisor = fields.Many2one("clientes", "Emisor")
-    receptor = fields.Many2one("clientes", "Receptor")
+    estado = fields.Selection(ESTADOSREPARTO, default=ESTADOSREPARTO[0][0]) # Campo de selección con las opciones de la variable ESTADOSREPARTO
+    urgencia_reparto = fields.Selection(URGENCIA, default=URGENCIA[4][0]) # Campo de selección con las opciones de la variable URGENCIA
+    emisor = fields.Many2one("clientes", "Emisor") # Relación con el modelo de clientes
+    receptor = fields.Many2one("clientes", "Receptor") # Relación con el modelo de clientes
 
     # Indicamos que esta funcion es una "Constraints" de ese atributo
     # Dicho de otra forma, cada vez que se cambie ese atributo, se lanzara esta funcion

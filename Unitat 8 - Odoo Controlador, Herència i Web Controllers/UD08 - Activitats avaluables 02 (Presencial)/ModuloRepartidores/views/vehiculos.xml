@@ -18,7 +18,7 @@
             <tree> <!-- Indicamos los campos del modelo a mostrar -->
                 <field name="tipo"/>
                 <field name="matricula"/>
-                <field name="foto" widget="image" class="oe_avatar"/>            
+                <field name="foto" widget="image" class="oe_avatar"/> <!-- Widget usado para mostrar la imagen del vehículo -->           
                 <field name="descripcion"/>
             </tree>
         </field>

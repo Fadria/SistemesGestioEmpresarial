@@ -15,6 +15,7 @@
     'depends': ['base'],
 
     'data': [      
+        # Fichero que contendrá las directivas de acceso a los diferentes recursos
         'security/ir.model.access.csv',
 
         #Aqui distintas vistas de equipo (vistas diferentes, mismo modelo)
@@ -23,8 +24,10 @@
         'views/clientes.xml',
         'views/repartos.xml',
 
+        # Ficheros usados para generar informes
         'report/entregas_report.xml',
 
+        # Ficheros usados para crear wizards
         'wizard/repartos_wizard.xml'
     ],
     # Fichero con data de demo si se inicializa la base de datos con "demo data" (No incluido en ejemplo)

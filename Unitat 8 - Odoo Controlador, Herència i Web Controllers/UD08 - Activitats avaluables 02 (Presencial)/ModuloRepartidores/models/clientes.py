@@ -18,7 +18,7 @@ class Clientes(models.Model):
     
     # Indicamos que atributo sera el que se usara para mostrar nombre.
     # Por defecto es "name", pero si no hay un atributo que se llama name, aqui lo indicamos
-    # Aqui indicamos que se use el atributo "nombre"
+    # Aqui indicamos que se use el atributo "dni"
     _rec_name = 'dni'    
 
     #Elementos de cada fila del modelo de datos
